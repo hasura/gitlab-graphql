@@ -16,7 +16,7 @@ app.get('/webhook', (request, response) => {
   }
   var cookie = request.get('Cookie');
   if (!cookie) {
-    response.status(401).send('No authorization headers');
+    response.json({'x-hasura-role': 'anonymous'});
     return;
   }
   var options = {
@@ -36,7 +36,7 @@ app.get('/webhook', (request, response) => {
       response.json(hasuraVariables);
     } else {
       console.log(err);
-      response.status(401).send('Could not authenticate');
+      response.json({'x-hasura-role': 'anonymous'});
     }
   })
 });
