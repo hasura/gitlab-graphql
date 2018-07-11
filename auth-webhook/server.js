@@ -10,6 +10,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhook', (request, response) => {
+  console.log('request body');
+  console.log('Received webhook request');
   if (!gitLabDomain) {
     response.status(500).send('Gitlab domain not configured');
     return;
@@ -19,9 +21,11 @@ app.get('/webhook', (request, response) => {
     response.json({'x-hasura-role': 'anonymous'});
     return;
   }
+  console.log('Cookie');
+  console.log(cookie);
   var options = {
     method: 'GET',
-    url: `https://${gitLabDomain}/api/v4/user`,
+    url: `${gitLabDomain}/api/v4/user`,
     headers: {
       'Cookie': cookie
     }
@@ -30,7 +34,7 @@ app.get('/webhook', (request, response) => {
     if (!err && resp.statusCode == 200) {
       const respObj = JSON.parse(respBody);
       const hasuraVariables = {
-        'x-hasura-user-id': respObj.id,
+        'x-hasura-user-id': respObj.id.toString(),
         'x-hasura-role': 'user'
       };
       response.json(hasuraVariables);
