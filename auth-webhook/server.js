@@ -3,7 +3,7 @@ var app = express();
 var requestClient = require('request');
 var port = process.env.PORT || 3000;
 
-var gitLabDomain = '479204df.ngrok.io'
+var gitLabDomain = process.env.GITLAB_DOMAIN;
 
 app.get('/', (req, res) => {
   res.send('Webhook is running at /webhook');
