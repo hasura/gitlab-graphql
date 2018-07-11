@@ -65,7 +65,7 @@ Run `docker ps` to verify whether the postgres container is running or not
 
 ## Initialize postgres to connect with gitlab
 
-Gitlab can be configured to use external postgres, given that it has following configuration in place
+Gitlab can be configured to use external postgres, given that it has the following configurations in place
 
 SSH into the container using the command below
 
@@ -84,12 +84,13 @@ root@5426ea03d387:/# psql -U postgres
 psql (10.4 (Debian 10.4-2.pgdg90+1))
 Type "help" for help.
 
-postgres=# -- Create a user called `gitlab`
+postgres=#
 ```
 
 Run the following commands
 
 ```
+postgres=# -- Create a user called `gitlab`
 CREATE ROLE gitlab with LOGIN;
 
 -- Add privilege permission to `gitlab` user so that it can add extensions
