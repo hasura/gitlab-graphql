@@ -1,5 +1,26 @@
 .App {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+}
+
+.Cookie {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Textbox {
+  margin-right: 5px;
+}
+
+.Text {
+  margin-right: 5px;
+}
+
+.Checkbox {
+  margin-right: 3px;
 }
