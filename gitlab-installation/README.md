@@ -90,7 +90,7 @@ postgres=#
 Run the following commands
 
 ```
-postgres=# -- Create a user called `gitlab`
+-- Create a user called `gitlab`
 CREATE ROLE gitlab with LOGIN;
 
 -- Add privilege permission to `gitlab` user so that it can add extensions
