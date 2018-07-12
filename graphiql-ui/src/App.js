@@ -9,7 +9,6 @@ const baseDomain = 'http://178.128.180.80';
 const graphqlUrl = `${baseDomain}:8090/v1alpha1/graphql`;
 
 class App extends Component {
-
   state = {
     cookie: null,
     includeCookie: true
@@ -76,7 +75,7 @@ class App extends Component {
         </div>
         <h3 className="Header">Architecture</h3>
         <div className="Description">
-          <img alt="architecture" src= {demoImage} />
+          <img src= {demoImage} alt="architecture"/>
         </div>
         {this.state.cookie ? toggleCookie() : null}
         <div className="graphql_wrapper">
