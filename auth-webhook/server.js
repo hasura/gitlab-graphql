@@ -5,6 +5,10 @@ var port = process.env.PORT || 3000;
 
 var gitLabDomain = process.env.GITLAB_DOMAIN;
 
+var cookieParser = require('cookie-parser')
+
+app.use(cookieParser())
+
 app.get('/', (req, res) => {
   res.send('Webhook is running at /webhook');
 });
@@ -14,7 +18,18 @@ app.get('/webhook', (request, response) => {
     response.status(500).send('Gitlab domain not configured');
     return;
   }
-  var cookie = request.get('cookie');
+  console.log('Request');
+
+  console.log(request);
+
+  console.log('All normal cookies');
+  console.log(request.cookies);
+
+  console.log('All the credentials cookies');
+  console.log(request.signedCookies);
+  var cookie = request.cookies['_gitlab_session'];
+  console.log('Cookie');
+  console.log(cookie);
   if (!cookie) {
     response.json({'x-hasura-role': 'anonymous'});
     return;
