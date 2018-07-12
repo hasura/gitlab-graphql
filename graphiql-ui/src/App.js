@@ -61,16 +61,16 @@ class App extends Component {
             this.handleCheckbox(e.target.checked);
           }}
          />
-        <p className="Text"> Using session cookie </p>
+        <p className="Text"> Using GitLab session cookie </p>
       </div>
     );
     return (
       <div id="app" className="App">
         <div className="Banner">
-          {`This GraphiQL uses your gitlab cookie to authenticate the requests. If you are not logged in, please `} <a href={ baseDomain }><button className={'form-control'}> Login</button></a>
+          {`This GraphiQL uses your GitLab cookie to authenticate the requests. If you are not logged in, please `} <a href={ baseDomain }><button className={'form-control'}> Login @ GitLab </button></a>
         </div>
         <div className="ArchitectureText">
-          This demo connects gitlab postgres using Hasura GraphQL engine. You can checkout the architecture <a href="/architecture.png">here</a>.
+          This demo connects to GitLab postgres via the Hasura GraphQL engine. <a href="/architecture.png">View an architecture diagram</a>.
         </div>
         {toggleCookie()}
         <div className="graphql_wrapper">
