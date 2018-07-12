@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.css'
 import './App.css';
-const graphqlUrl = process.env.GRAPHQL_URL;
+const baseDomain = 'http://178.128.180.80';
+
+const graphqlUrl = `${baseDomain}:8090/v1alpha1/graphql`;
 
 class App extends Component {
 
@@ -48,23 +50,39 @@ class App extends Component {
       }).then(response => response.json());
     }
 
+    const toggleCookie = () =>
+      <div className="Cookie">
+        <input
+          className="Checkbox"
+          type="Checkbox"
+          checked={this.state.includeCookie}
+          onChange={(e) => {
+            this.handleCheckbox(e.target.checked);
+          }}
+         />
+        <p className="Text"> Using cookie: </p>
+        <input className="Textbox" type="text" value={this.state.cookie} readOnly />
+      </div>
+
+
+    const demoImage = require("./assets/gitlab-graphql-demo.png");
+
     return (
       <div className="App">
-        <div className="Cookie">
-          <input
-            className="Checkbox"
-            type="Checkbox"
-            checked={this.state.includeCookie}
-            onChange={(e) => {
-              this.handleCheckbox(e.target.checked);
-            }}
-           />
-          <p className="Text"> Using cookie: </p>
-          <input className="Textbox" type="text" value={"lololololololol"} readOnly />
+        <div className="Banner">
+          {`This GraphiQL uses your gitlab cookie to authenticate the requests. If you are not logged in, `} <a href={baseDomain}> please login here. </a>
         </div>
-        <GraphiQL
-          fetcher={graphqlFetcher}
-        />
+        <h3 className="Header">Architecture</h3>
+        <div className="Description">
+          <img src= {demoImage} />
+        </div>
+        {this.state.cookie ? toggleCookie() : null}
+        <div className="graphql_wrapper">
+          <GraphiQL
+            fetcher={graphqlFetcher}
+          />
+        </div>
+
       </div>
     );
   }

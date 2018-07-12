@@ -1,13 +1,9 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
 }
 
 .Cookie {
-  margin: 20px;
+  margin: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,4 +19,46 @@
 
 .Checkbox {
   margin-right: 3px;
+}
+
+.Alert {
+  font-style: italic;
+  font-size: 8;
+  color: "red";
+}
+
+.Banner {
+  text-align: center;
+  width: 100%;
+  padding: 10px 0px;
+  background-color: #353A50;
+  color: #fff;
+}
+
+.Banner a {
+  text-decoration: none;
+  color: #FF0000;
+}
+
+.Banner a:hover {
+  color: #FF0000;
+}
+
+.Description {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.Description img{
+  width: 50%;
+  display: inline-block;
+}
+
+.Header {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.graphql_wrapper {
+  height: 100vh;
 }
