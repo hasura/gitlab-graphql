@@ -23,7 +23,7 @@ app.get('/webhook', (request, response) => {
     method: 'GET',
     url: `${gitLabDomain}/api/v4/user`,
     headers: {
-      'Cookie': cookie
+      'Cookie': '_gitlab_session=' + cookie
     }
   };
   requestClient(options, (err, resp, respBody) => {
