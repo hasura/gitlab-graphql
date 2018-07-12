@@ -10,23 +10,7 @@ const graphqlUrl = `${baseDomain}:8090/v1alpha1/graphql`;
 
 class App extends Component {
   state = {
-    cookie: null,
     includeCookie: true
-  }
-
-  componentDidMount() {
-    const gitlabSessionToken = this.getCookieValue("_gitlab_session");
-    if (gitlabSessionToken) {
-      this.setState({
-        ...this.state,
-        cookie: gitlabSessionToken
-      });
-    }
-  }
-
-  getCookieValue = (key) => {
-    const value = document.cookie.match('(^|;)\\s*' + key + '\\s*=\\s*([^;]+)');
-    return value ? value.pop() : '';
   }
 
   handleCheckbox = (status) => {
@@ -39,10 +23,11 @@ class App extends Component {
   render() {
     const headers = {
       'Content-Type': 'application/json',
+      'credentials': 'omit'
     };
 
     if (this.state.includeCookie) {
-      headers['x-gitlab-cookie'] = this.state.cookie;
+      headers['credentials'] = 'include';
     }
 
     const graphqlFetcher = (graphQLParams) => {
@@ -63,11 +48,9 @@ class App extends Component {
             this.handleCheckbox(e.target.checked);
           }}
          />
-        <p className="Text"> Using header: </p>
-        <input className="Textbox" type="text" value={`{ "x-gitlab-key" : "${this.state.cookie}" }`} readOnly />
+        <p className="Text"> Using session cookie </p>
       </div>
     );
-      
     return (
       <div className="App">
         <div className="Banner">
@@ -77,7 +60,7 @@ class App extends Component {
         <div className="Description">
           <img src= {demoImage} alt="architecture"/>
         </div>
-        {this.state.cookie ? toggleCookie() : null}
+        {toggleCookie()}
         <div className="graphql_wrapper">
           <GraphiQL
             fetcher={graphqlFetcher}
