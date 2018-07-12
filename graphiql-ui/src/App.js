@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.css'
 import './App.css';
-const graphqlUrl = process.env.GRAPHQL_URL || 'https://demooooo.herokuapp.com/v1alpha1/query';
+const graphqlUrl = process.env.GRAPHQL_URL;
 
 class App extends Component {
 
