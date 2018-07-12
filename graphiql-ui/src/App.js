@@ -36,7 +36,7 @@ class App extends Component {
     if (gitlabSessionToken) {
       this.setState({
         ...this.state,
-        cookie: `_gitlab_session=${gitlabSessionToken}`
+        cookie: gitlabSessionToken
       });
     }
   }
@@ -57,9 +57,11 @@ class App extends Component {
     const headers = {
       'Content-Type': 'application/json',
     };
+
     if (this.state.includeCookie) {
-      headers['Cookie'] = this.state.cookie;
+      headers['x-gitlab-cookie'] = this.state.cookie;
     }
+
     const graphqlFetcher = (graphQLParams) => {
       return fetch(graphqlUrl, {
         method: 'post',
@@ -68,7 +70,7 @@ class App extends Component {
       }).then(response => response.json());
     }
 
-    const toggleCookie = () =>
+    const toggleCookie = () => (
       <div className="Cookie">
         <input
           className="Checkbox"
@@ -78,13 +80,11 @@ class App extends Component {
             this.handleCheckbox(e.target.checked);
           }}
          />
-        <p className="Text"> Using cookie: </p>
-        <input className="Textbox" type="text" value={this.state.cookie} readOnly />
+        <p className="Text"> Using header: </p>
+        <input className="Textbox" type="text" value={`{ "x-gitlab-key" : "${this.state.cookie}" }`} readOnly />
       </div>
-
-
-    const demoImage = require("./assets/gitlab-graphql-demo.png");
-
+    );
+      
     return (
       <div id="app" className="App">
         <div className="Banner">
@@ -93,17 +93,12 @@ class App extends Component {
         <div className="ArchitectureText">
           This demo connects gitlab postgres using Hasura GraphQL engine. You can checkout the architecture <a href="/ui/architecture.png">here</a>.
         </div>
-        <h3 className="Header">Architecture</h3>
-        <div className="Description">
-          <img src= {demoImage} alt="architecture"/>
-        </div>
         {this.state.cookie ? toggleCookie() : null}
         <div className="graphql_wrapper">
           <GraphiQL
             fetcher={graphqlFetcher}
           />
         </div>
-
       </div>
     );
   }
