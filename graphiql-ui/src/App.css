@@ -41,6 +41,11 @@
   color: #fff;
 }
 
+.Banner button {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 .Banner a {
   text-decoration: none;
   color: #FF0000;

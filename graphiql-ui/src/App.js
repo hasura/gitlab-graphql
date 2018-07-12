@@ -67,10 +67,10 @@ class App extends Component {
     return (
       <div id="app" className="App">
         <div className="Banner">
-          {`This GraphiQL uses your gitlab cookie to authenticate the requests. If you are not logged in, `} <a href={baseDomain}> please login here. </a>
+          {`This GraphiQL uses your gitlab cookie to authenticate the requests. If you are not logged in, please `} <a href={ baseDomain }><button className={'form-control'}> Login</button></a>
         </div>
         <div className="ArchitectureText">
-          This demo connects gitlab postgres using Hasura GraphQL engine. You can checkout the architecture <a href="/ui/architecture.png">here</a>.
+          This demo connects gitlab postgres using Hasura GraphQL engine. You can checkout the architecture <a href="/architecture.png">here</a>.
         </div>
         {toggleCookie()}
         <div className="graphql_wrapper">
