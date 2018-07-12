@@ -18,10 +18,6 @@ app.get('/webhook', (request, response) => {
     response.status(500).send('Gitlab domain not configured');
     return;
   }
-  console.log('Request');
-
-  console.log(request);
-
   console.log('All normal cookies');
   console.log(request.cookies);
 

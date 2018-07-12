@@ -3,7 +3,7 @@ import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.css'
 import './App.css';
 
-const baseDomain = 'http://178.128.180.80';
+const baseDomain = 'http://gitlab-demo.hasura.io';
 
 const graphqlUrl = `${baseDomain}:8090/v1alpha1/graphql`;
 
