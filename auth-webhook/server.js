@@ -14,7 +14,7 @@ app.get('/webhook', (request, response) => {
     response.status(500).send('Gitlab domain not configured');
     return;
   }
-  var cookie = request.get('x-gitlab-cookie');
+  var cookie = request.get('cookie');
   if (!cookie) {
     response.json({'x-hasura-role': 'anonymous'});
     return;
@@ -23,7 +23,7 @@ app.get('/webhook', (request, response) => {
     method: 'GET',
     url: `${gitLabDomain}/api/v4/user`,
     headers: {
-      'Cookie': '_gitlab_session=' + cookie
+      'Cookie': cookie
     }
   };
   requestClient(options, (err, resp, respBody) => {
