@@ -38,19 +38,15 @@ class App extends Component {
   }
 
   render() {
-    const headers = {
-      'Content-Type': 'application/json',
-      'credentials': 'omit'
-    };
-
-    if (this.state.includeCookie) {
-      headers['credentials'] = 'include';
-    }
+    const credentials = this.state.includeCookie ? 'include' : 'omit';
 
     const graphqlFetcher = (graphQLParams) => {
       return fetch(graphqlUrl, {
         method: 'post',
-        headers,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials,
         body: JSON.stringify(graphQLParams),
       }).then(response => response.json());
     }
