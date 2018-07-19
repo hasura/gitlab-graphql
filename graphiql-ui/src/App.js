@@ -93,12 +93,37 @@ class App extends Component {
     this.state = {
       show: false,
       isLoggedIn: false,
+      demoUsername: 'demo-user',
+      demoPassword: 'demo@hasura',
+      userNameCopied: false,
+      passwordCopied: false,
     };
   }
 
   componentDidMount() {
     this.fetchLoggedInUser();
   }
+
+  copyToClipBoard(text, copiedText) { 
+    return () => {
+      var el = document.createElement('textarea');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      el.setAttribute('readonly', '');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      var success = document.execCommand('copy');
+      document.body.removeChild(el);
+      this.setState({ ...this.state, [copiedText]: true});
+
+      setTimeout(() => {
+        this.setState({ ...this.state, [copiedText]: false});
+      }, 2000);
+      return success;
+    };
+  }
+
 
   fetchLoggedInUser() {
     const fetchUrl = `${ baseDomain }/api/v4/user`;
@@ -166,6 +191,21 @@ class App extends Component {
       <div id="app" className="App">
         <div className="Banner">
           {`This GraphiQL uses your GitLab cookie to authenticate the requests. If you are not logged in, please `} <a href={ baseDomain }><button className={'form-control'}> Login @ GitLab </button></a>
+        </div>
+        <div className="GitlabLoginHelp">
+          If you don't have an account. You can use the demo credentials as shown below to login.
+        </div>
+        <div className="GitlabCredentials">
+          <div className="usernameInput inputElement">
+            <span className="label">Username:</span>
+            <input disabled type="text" value={ this.state.demoUsername } />
+            <button className="copyButton" onClick={ this.copyToClipBoard(this.state.demoUsername, 'userNameCopied') }>{ this.state.userNameCopied ? 'Copied' : 'Copy' }</button>
+          </div>
+          <div className="passwordInput inputElement">
+            <span className="label">Password:</span>
+            <input disabled type="password" value={ this.state.demoPassword } />
+            <button className="copyButton" onClick={ this.copyToClipBoard( this.state.demoPassword, 'passwordCopied') }>{ this.state.passwordCopied ? 'Copied' : 'Copy' }</button>
+          </div>
         </div>
         <div className="ArchitectureText">
           This demo connects to GitLab postgres via the Hasura GraphQL engine. <a href="/architecture.png">View an architecture diagram</a>.

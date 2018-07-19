@@ -7,6 +7,73 @@
   margin: 20px 0px;
 }
 
+.App .GitlabLoginHelp {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.App .GitlabCredentials {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  text-align: center;
+}
+
+
+.App .GitlabCredentials .inputElement {
+  padding: 10px;
+}
+
+.App .GitlabCredentials .usernameInput .label {
+  margin-right: 20px;
+}
+
+.App .GitlabCredentials .passwordInput .label {
+  margin-right: 20px;
+}
+
+
+.App .GitlabCredentials .passwordInput input[disabled] {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.App .GitlabCredentials .passwordInput input
+, .App .GitlabCredentials .usernameInput input {
+  border: 1px solid #eee;
+  box-shadow: none;
+  height: 30px;
+  border-radius: 0;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555555;
+  background-color: #fff;
+
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.copyButton {
+  height: 44px;
+  cursor: pointer;
+  background-color: #353A50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: all ease 0.1;
+  min-width: 90px;
+}
+
+.copyButton:hover {
+  opacity: 0.8;
+}
+
 .Cookie {
   margin: 5px;
   display: flex;
