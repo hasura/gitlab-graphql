@@ -3,9 +3,10 @@ import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.css'
 import './App.css';
 
-const baseDomain = 'http://gitlab-demo.hasura.io';
+const baseDomain = 'https://gitlab-demo.hasura.io';
 
-const graphqlUrl = `${baseDomain}:8090/v1alpha1/graphql`;
+// const graphqlUrl = `${baseDomain}:8090/v1alpha1/graphql`;
+const graphqlUrl = `${baseDomain}/v1alpha1/graphql`;
 
 const defaultQueries = `
 query fetch_all_public_projects {

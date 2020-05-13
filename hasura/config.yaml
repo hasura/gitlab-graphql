@@ -1,0 +1,3 @@
+version: 2
+endpoint: https://gitlab-demo.hasura.io
+metadata_directory: metadata

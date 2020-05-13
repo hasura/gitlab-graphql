@@ -1,5 +1,5 @@
 # Step 1: Pulls a simple ubuntu image with node 8 installed in it
-FROM node:8
+FROM node:10.16.3
 
 ENV PORT 8080
 
@@ -8,9 +8,11 @@ WORKDIR /app
 
 # Step 3: Copy the package.json file from your local directory and paste it inside the container, inside the app directory
 COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
 
+# 
 # Step 4: cd into the app directory and run npm install to install application dependencies
-RUN npm install 
+RUN npm ci
 
 # Step 5: Install serve globally to be used to serve the app
 RUN npm -g install serve
